@@ -13,13 +13,13 @@ import javax.swing.JTextArea;
 import java.awt.FlowLayout;
 import javax.swing.DropMode;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class ChatUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField ChatTrace;
-	private JTextField ParticipantsList;
+	private JTextField msgInput;
 
 	public ChatUI() {
 		setVisible(true);
@@ -31,25 +31,27 @@ public class ChatUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		ChatTrace = new JTextField();
-		contentPane.add(ChatTrace, BorderLayout.CENTER);
-		ChatTrace.setColumns(10);
-		
-		ParticipantsList = new JTextField();
-		contentPane.add(ParticipantsList, BorderLayout.EAST);
-		ParticipantsList.setColumns(10);
-		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.SOUTH);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JTextArea MessageArea = new JTextArea();
-		MessageArea.setRows(5);
-		MessageArea.setColumns(60);
-		panel.add(MessageArea);
+		msgInput = new JTextField();
+		panel.add(msgInput);
+		msgInput.setColumns(30);
 		
 		JButton SendBtn = new JButton("\uC804\uC1A1");
 		panel.add(SendBtn);
+		
+		JTextArea msgTrace = new JTextArea();
+		contentPane.add(msgTrace, BorderLayout.CENTER);
+		
+		JTextArea participatorList = new JTextArea();
+		participatorList.setForeground(new Color(0, 0, 0));
+		participatorList.setColumns(20);
+		contentPane.add(participatorList, BorderLayout.EAST);
 	}
-
+	
+	void sendMsg() { //메세지 전송
+		
+	}
 }
