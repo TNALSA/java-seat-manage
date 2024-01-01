@@ -1,4 +1,4 @@
-package Client;
+package View;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalTime;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,6 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
+
+import Client.Client;
 
 public class userUI implements ActionListener {
 
@@ -45,13 +48,13 @@ public class userUI implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				LocalTime sunnyTime = LocalTime.ofSecondOfDay(time);
-				label.setText("남은시간:" + sunnyTime);
+				label.setText("?��???���?:" + sunnyTime);
 				time--;
 				
 				if (time == 600) { //time is second
-					JOptionPane.showInternalMessageDialog(null, "사용시간이 10분 남았습니다.");
+					JOptionPane.showInternalMessageDialog(null, "?��?��?��간이 10�? ?��?��?��?��?��.");
 				}
-				if (time == -1) {
+				if (time == -1) { //?��?��?��간이 ?��?�� ?��
 					timer.stop();
 					try {
 						userMainframe.dispose();
@@ -107,25 +110,25 @@ public class userUI implements ActionListener {
 		// JLabel
 		seat_num = new JLabel("no." + seat);
 		seat_num.setBounds(8, 8, 44, 16);
-		seat_num.setFont(new Font("KoPubWorld돋움체 Bold", Font.BOLD, 15));
+		seat_num.setFont(new Font("KoPubWorld?��??�? Bold", Font.BOLD, 15));
 		seat_num.setForeground(Color.BLACK);
 		seat_num.setBackground(Color.WHITE);
 
 		user_id = new JLabel("ID:" + id);
 		user_id.setBounds(8, 34, 145, 16);
-		user_id.setFont(new Font("KoPubWorld돋움체 Medium", Font.PLAIN, 13));
+		user_id.setFont(new Font("KoPubWorld?��??�? Medium", Font.PLAIN, 13));
 		user_id.setForeground(Color.BLACK);
 		seat_num.setBackground(Color.WHITE);
 
 		time_start = new JLabel();
 		time_start.setBounds(8, 77, 145, 16);
-		time_start.setFont(new Font("KoPubWorld돋움체 Medium", Font.PLAIN, 13));
+		time_start.setFont(new Font("KoPubWorld?��??�? Medium", Font.PLAIN, 13));
 		time_start.setForeground(Color.BLACK);
 				time_start.setBackground(Color.WHITE);
 
 		// Button
 		Button_food = new JButton("주문");
-		Button_food.setFont(new Font("KoPubWorld돋움체 Medium", Font.BOLD, 9));
+		Button_food.setFont(new Font("KoPubWorld?��??�? Medium", Font.BOLD, 9));
 		Button_food.setBounds(12, 140, 84, 23);
 		Button_food.setFocusable(false);
 		Button_food.addActionListener(this);
@@ -133,15 +136,15 @@ public class userUI implements ActionListener {
 
 				
 		Button_order = new JButton("문의");
-		Button_order.setFont(new Font("KoPubWorld돋움체 Medium", Font.BOLD, 9));
+		Button_order.setFont(new Font("KoPubWorld?��??�? Medium", Font.BOLD, 9));
 		Button_order.setBounds(108, 140, 84, 23);
 		Button_order.setFocusable(false);
 		Button_order.addActionListener(this);
 		Button_order.setBackground(Color.WHITE);
 
 				
-		Button_timeAdd = new JButton("시간 추가");
-		Button_timeAdd.setFont(new Font("KoPubWorld돋움체 Medium", Font.BOLD, 9));
+		Button_timeAdd = new JButton("?���? 추�?");
+		Button_timeAdd.setFont(new Font("KoPubWorld?��??�? Medium", Font.BOLD, 9));
 		Button_timeAdd.setBounds(204, 140, 84, 23);
 		Button_timeAdd.setFocusable(false);
 		Button_timeAdd.addActionListener(this);
@@ -149,7 +152,7 @@ public class userUI implements ActionListener {
 
 				
 		Button_end = new JButton("종료");
-		Button_end.setFont(new Font("KoPubWorld돋움체 Medium", Font.BOLD, 9));
+		Button_end.setFont(new Font("KoPubWorld?��??�? Medium", Font.BOLD, 9));
 		Button_end.setBounds(300, 139, 84, 23);
 		Button_end.setFocusable(false);
 		Button_end.addActionListener(this);
@@ -179,17 +182,16 @@ public class userUI implements ActionListener {
 	public void actionPerformed(ActionEvent e) { 
 		//주문 버튼
 		if (e.getSource() == Button_food) {
-			menuUI mf = new menuUI();
-			mf.setVisible(true);			
-			//menuCom mc = new menuCom();
+			menuUI mf = new menuUI();			
+			
 		}
 		//문의 버튼
 		if (e.getSource() == Button_order) { 
-
+			ChatUI cu = new ChatUI(); 
 		}
 		//종료 버튼
 		if (e.getSource() == Button_end) { 
-			int response = JOptionPane.showConfirmDialog(null,"종료하시겠습니까?", "종료", JOptionPane.YES_NO_OPTION,
+			int response = JOptionPane.showConfirmDialog(null,"종료?��?��겠습?���??", "종료", JOptionPane.YES_NO_OPTION,
 					JOptionPane.INFORMATION_MESSAGE, null);
 			
 			if(response == 0) { //Yes
@@ -204,7 +206,7 @@ public class userUI implements ActionListener {
 			}
 		}
 		/*
-		 //시간 추가 버튼
+		 //?���? 추�? 버튼
 		if (e.getSource() == Button_timeAdd) {
 			try {
 				int addTime = Client.timeAdd();

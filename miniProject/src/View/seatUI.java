@@ -1,4 +1,4 @@
-package Client;
+package View;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 public class seatUI implements ActionListener {
 
    private static JPanel contentPane;
-   static JFrame jframe = new JFrame();
+   public JFrame jframe = new JFrame();
    private static JPanel seat_t = new JPanel();
 
    // JButton seat
@@ -55,6 +55,7 @@ public class seatUI implements ActionListener {
    static JButton seat28 = new JButton("28");
    static JButton seat29 = new JButton("29");
    static JButton seat30 = new JButton("30");
+   static JButton seatAdmin = new JButton("Admin");
 
    
    static Map<String,JButton> userbtnMap =new HashMap<>();
@@ -62,8 +63,8 @@ public class seatUI implements ActionListener {
    private static ButtonGroup btnGroup;
    
    public seatUI() {
-      //jframe.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\msa18\\OneDrive\\Desktop\\�떎�슫濡쒕뱶 (1).png"));
-	
+      //jframe.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\msa18\\OneDrive\\Desktop\\�떎�슫濡쒕�? (1).png"));
+	  jframe.setVisible(true);
       jframe.setTitle("I4 PC Manage");
       jframe.getContentPane().setForeground(new Color(0, 0, 0));
       jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -153,7 +154,7 @@ public class seatUI implements ActionListener {
  
       seat4.setBackground(Color.WHITE);
       seat4.setForeground(SystemColor.activeCaption);
-      seat4.setFont(new Font("援대┝", Font.BOLD, 10));
+      seat4.setFont(new Font("?��???��", Font.BOLD, 10));
       seat4.setVerticalAlignment(SwingConstants.TOP);
       seat4.setHorizontalAlignment(SwingConstants.LEADING);
       seat4.setBounds(42, 297, 60, 60);
@@ -412,6 +413,16 @@ public class seatUI implements ActionListener {
       seat30.addActionListener(this);
       btnGroup.add(seat30);
       
+      seatAdmin.setBackground(Color.WHITE);
+      seatAdmin.setForeground(SystemColor.activeCaption);
+      seatAdmin.setFont(new Font("굴림", Font.BOLD, 10));
+      seatAdmin.setVerticalAlignment(SwingConstants.TOP);
+      seatAdmin.setHorizontalAlignment(SwingConstants.LEADING);
+      seatAdmin.setBounds(42, 419, 60, 60);
+      seatAdmin.setActionCommand("Admin");
+      seatAdmin.addActionListener(this);
+      btnGroup.add(seatAdmin);
+      
       JButton[] btn = new JButton[] 
     		  {
     		  seat1,seat2,seat3,seat4,seat5,
@@ -419,7 +430,7 @@ public class seatUI implements ActionListener {
     		  seat11,seat12,seat13,seat14,seat15,
     		  seat16,seat17,seat18,seat19,seat20,
     		  seat21,seat22,seat23,seat24,seat25,
-    		  seat26,seat27,seat28,seat29,seat30
+    		  seat26,seat27,seat28,seat29,seat30, seatAdmin
     		  };
       
       for(int i=0; i<btn.length; i++) 
@@ -458,6 +469,8 @@ public class seatUI implements ActionListener {
       seat_t.add(seat29);
       seat_t.add(seat23);
       seat_t.add(seat30);
+      seat_t.add(seatAdmin);
+      
       
       System.out.println(btnGroup.getButtonCount());
       
@@ -496,6 +509,7 @@ public class seatUI implements ActionListener {
 	   case "28": return seat28;
 	   case "29": return seat29;
 	   case "30": return seat30;
+	   case "Admin": return seatAdmin;
 	   }
 	return null;
 	   
@@ -505,11 +519,9 @@ public class seatUI implements ActionListener {
    public void actionPerformed(ActionEvent e) {
 	  String seatNum;
 
-      
       if (e.getSource() == seat1 ) {
           seatNum = seat1.getActionCommand();
           loginUI loginPage = new loginUI(seatNum);
-          
        }
        
        if (e.getSource() == seat2) {
@@ -519,25 +531,21 @@ public class seatUI implements ActionListener {
        
        if (e.getSource() == seat3) {
           seatNum = seat3.getActionCommand();
-
           loginUI loginPage = new loginUI(seatNum);
        }
        
        if (e.getSource() == seat4) {
           seatNum = seat4.getActionCommand();
-
           loginUI loginPage = new loginUI(seatNum);
        }
        
        if (e.getSource() == seat5) {
           seatNum = seat5.getActionCommand();
-
           loginUI loginPage = new loginUI(seatNum);
        }
        
        if (e.getSource() == seat6) {
           seatNum = seat6.getActionCommand();
-
           loginUI loginPage = new loginUI(seatNum);
        }
        
@@ -683,6 +691,11 @@ public class seatUI implements ActionListener {
          
           loginUI loginPage = new loginUI(seatNum);
        }
+       if (e.getSource() == seatAdmin) {
+           seatNum = seatAdmin.getActionCommand();
+          
+           loginUI loginPage = new loginUI(seatNum);
+        }
        
        
    }

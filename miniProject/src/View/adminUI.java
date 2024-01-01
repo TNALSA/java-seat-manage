@@ -1,5 +1,5 @@
 
-package Server;
+package View;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -44,6 +44,8 @@ import javax.swing.text.Caret;
 
 import com.mysql.cj.jdbc.Blob;
 
+import Server.Server;
+
 public class adminUI {
 	private JPanel contentPane;
 	JButton btnBrowse;
@@ -67,7 +69,7 @@ public class adminUI {
 	JButton add_b;
 	JButton edit_b;
 	JButton del_b;
-	String m_category = "ì „ì²´";
+	String m_category = "? „ì²?";
 	Server server;
 	
 	
@@ -101,13 +103,14 @@ public class adminUI {
 	static JButton seat22 = new JButton("22");
 	static JButton seat29 = new JButton("29");
 	static JButton seat27 = new JButton("27");
+	
 	JPanel panel;
 
 	static Map<String, JButton> mngbtnMap = new HashMap<>();
 
 	public adminUI() {
 		//mngFrame.setIconImage(
-				//Toolkit.getDefaultToolkit().getImage("C:\\Users\\msa18\\OneDrive\\Desktop\\å ìˆë¼„å ìŒë’²åš¥â‰ªë®†è«­ï¿½ (1).png"));
+				//Toolkit.getDefaultToolkit().getImage("C:\\Users\\msa18\\OneDrive\\Desktop\\? ?ˆë¼„å ?Œ?’²?š¥?‰ªë®†è«­ï¿? (1).png"));
 		mngFrame.setTitle("I4 PC Manage");
 		mngFrame.getContentPane().setForeground(new Color(155, 255, 30));
 		mngFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -402,47 +405,47 @@ public class adminUI {
 
 		radioGroup = new ButtonGroup();
 
-		rdbtnNewRadioButton = new JRadioButton("ì „ì²´");
+		rdbtnNewRadioButton = new JRadioButton("? „ì²?");
 		rdbtnNewRadioButton.setSelected(true);
 		rdbtnNewRadioButton.setBounds(8, 6, 121, 23);
 		rdbtnNewRadioButton.setBackground(SystemColor.inactiveCaption);
-		rdbtnNewRadioButton.setActionCommand("ì „ì²´");
+		rdbtnNewRadioButton.setActionCommand("? „ì²?");
 		rdbtnNewRadioButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				m_category = "ì „ì²´";
+				m_category = "? „ì²?";
 			}
 
 		});
 
 		menu_t.add(rdbtnNewRadioButton);
 
-		rdbtnNewRadioButton_1 = new JRadioButton("ì‹ì‚¬ë¥˜");
+		rdbtnNewRadioButton_1 = new JRadioButton("?‹?‚¬ë¥?");
 		rdbtnNewRadioButton_1.setBounds(133, 6, 121, 23);
 		rdbtnNewRadioButton_1.setBackground(SystemColor.inactiveCaption);
-		rdbtnNewRadioButton_1.setActionCommand("ì‹ì‚¬ë¥˜");
+		rdbtnNewRadioButton_1.setActionCommand("?‹?‚¬ë¥?");
 		rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				m_category = "ì‹ì‚¬ë¥˜";
+				m_category = "?‹?‚¬ë¥?";
 				
 			}
 
 		});
 		menu_t.add(rdbtnNewRadioButton_1);
 
-		rdbtnNewRadioButton_1_1 = new JRadioButton("ë¼ë©´ë¥˜");
+		rdbtnNewRadioButton_1_1 = new JRadioButton("?¼ë©´ë¥˜");
 		rdbtnNewRadioButton_1_1.setBounds(258, 6, 121, 23);
 		rdbtnNewRadioButton_1_1.setBackground(SystemColor.inactiveCaption);
-		rdbtnNewRadioButton_1_1.setActionCommand("ë¼ë©´ë¥˜");
+		rdbtnNewRadioButton_1_1.setActionCommand("?¼ë©´ë¥˜");
 		// rdbtnNewRadioButton_1_1.addActionListener(this);
 		rdbtnNewRadioButton_1_1.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				m_category = "ë¼ë©´ë¥˜";
+				m_category = "?¼ë©´ë¥˜";
 				
 
 			}
@@ -450,31 +453,31 @@ public class adminUI {
 		});
 		menu_t.add(rdbtnNewRadioButton_1_1);
 
-		rdbtnNewRadioButton_1_2 = new JRadioButton("ìŒë£Œë¥˜");
+		rdbtnNewRadioButton_1_2 = new JRadioButton("?Œë£Œë¥˜");
 		rdbtnNewRadioButton_1_2.setBounds(383, 6, 121, 23);
 		rdbtnNewRadioButton_1_2.setBackground(SystemColor.inactiveCaption);
-		rdbtnNewRadioButton_1_2.setActionCommand("ìŒë£Œë¥˜");
+		rdbtnNewRadioButton_1_2.setActionCommand("?Œë£Œë¥˜");
 		// rdbtnNewRadioButton_1_2.addActionListener(this);
 		rdbtnNewRadioButton_1_2.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				m_category = "ìŒë£Œë¥˜";
+				m_category = "?Œë£Œë¥˜";
 
 			}
 
 		});
 		menu_t.add(rdbtnNewRadioButton_1_2);
 
-		rdbtnNewRadioButton_1_3 = new JRadioButton("ê°„ì‹ë¥˜");
+		rdbtnNewRadioButton_1_3 = new JRadioButton("ê°„ì‹ë¥?");
 		rdbtnNewRadioButton_1_3.setBounds(508, 6, 121, 23);
 		rdbtnNewRadioButton_1_3.setBackground(SystemColor.inactiveCaption);
-		rdbtnNewRadioButton_1_3.setActionCommand("ê°„ì‹ë¥˜");
+		rdbtnNewRadioButton_1_3.setActionCommand("ê°„ì‹ë¥?");
 		// rdbtnNewRadioButton_1_3.addActionListener(this);
 		rdbtnNewRadioButton_1_3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				m_category = "ê°„ì‹ë¥˜";
+				m_category = "ê°„ì‹ë¥?";
 				
 			}
 
@@ -482,14 +485,14 @@ public class adminUI {
 		
 		menu_t.add(rdbtnNewRadioButton_1_3);
 
-		rdbtnNewRadioButton_1_4 = new JRadioButton("í† í•‘");
+		rdbtnNewRadioButton_1_4 = new JRadioButton("?† ?•‘");
 		rdbtnNewRadioButton_1_4.setBounds(633, 6, 78, 23);
 		rdbtnNewRadioButton_1_4.setBackground(SystemColor.inactiveCaption);
-		rdbtnNewRadioButton_1_4.setActionCommand("í† í•‘");
+		rdbtnNewRadioButton_1_4.setActionCommand("?† ?•‘");
 		rdbtnNewRadioButton_1_4.addActionListener(new ActionListener() {
 			@Override
 		public void actionPerformed(ActionEvent e) {
-			m_category = "í† í•‘";
+			m_category = "?† ?•‘";
 		
 		}
 
@@ -503,19 +506,19 @@ public class adminUI {
 		radioGroup.add(rdbtnNewRadioButton_1_3);
 		radioGroup.add(rdbtnNewRadioButton_1_4);
 
-		String[] header = { "ë©”ë‰´ë²ˆí˜¸","ë©”ë‰´ëª…","ê°€ê²©","ë¶„ë¥˜" };
+		String[] header = { "ë©”ë‰´ë²ˆí˜¸","ë©”ë‰´ëª?","ê°?ê²?","ë¶„ë¥˜" };
 
-		add_b = new JButton("ì¶”ê°€");
+		add_b = new JButton("ì¶”ê?");
 		add_b.setBounds(30, 310, 97, 34);
 		menu_t.add(add_b);
 		
 
-		edit_b = new JButton("ìˆ˜ì •");
+		edit_b = new JButton("?ˆ˜? •");
 		edit_b.setBounds(140, 310, 97, 34);
 		menu_t.add(edit_b);
 		
 
-		del_b = new JButton("ì‚­ì œ");
+		del_b = new JButton("?‚­? œ");
 		del_b.setBounds(249, 310, 97, 34);
 		menu_t.add(del_b);
 		
@@ -575,30 +578,30 @@ public class adminUI {
 		menu_t.add(panel);
 		panel.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("ë©”ë‰´ëª…");
+		JLabel lblNewLabel = new JLabel("ë©”ë‰´ëª?");
 		lblNewLabel.setBounds(27, 38, 45, 28);
 		panel.add(lblNewLabel);
-		lblNewLabel.setFont(new Font("KoPubWorldë‹ì›€ì²´ Medium", Font.PLAIN, 13));
+		lblNewLabel.setFont(new Font("KoPubWorld?‹??ì²? Medium", Font.PLAIN, 13));
 
 		textField_3 = new JTextField();
 		textField_3.setBounds(86, 39, 226, 28);
 		panel.add(textField_3);
 		textField_3.setColumns(10);
 
-		JLabel lblPrice = new JLabel("ê°€ê²©");
+		JLabel lblPrice = new JLabel("ê°?ê²?");
 		lblPrice.setBounds(27, 100, 45, 28);
 		panel.add(lblPrice);
-		lblPrice.setFont(new Font("KoPubWorldë‹ì›€ì²´ Medium", Font.PLAIN, 13));
+		lblPrice.setFont(new Font("KoPubWorld?‹??ì²? Medium", Font.PLAIN, 13));
 
 		textField_2 = new JTextField();
 		textField_2.setBounds(86, 101, 226, 28);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 
-		JLabel lblPrice_1 = new JLabel("ì´ë¯¸ì§€");
+		JLabel lblPrice_1 = new JLabel("?´ë¯¸ì?");
 		lblPrice_1.setBounds(27, 165, 45, 28);
 		panel.add(lblPrice_1);
-		lblPrice_1.setFont(new Font("KoPubWorldë‹ì›€ì²´ Medium", Font.PLAIN, 13));
+		lblPrice_1.setFont(new Font("KoPubWorld?‹??ì²? Medium", Font.PLAIN, 13));
 
 		textField_1 = new JTextField();
 		textField_1.setBounds(86, 166, 226, 28);
@@ -624,7 +627,7 @@ public class adminUI {
 		JLabel lblPrice_1_1 = new JLabel("ë©”ë‰´ë²ˆí˜¸");
 		lblPrice_1_1.setBounds(27, 38, 45, 28);
 		panel_1.add(lblPrice_1_1);
-		lblPrice_1_1.setFont(new Font("KoPubWorldë‹ì›€ì²´ Medium", Font.PLAIN, 13));
+		lblPrice_1_1.setFont(new Font("KoPubWorld?‹??ì²? Medium", Font.PLAIN, 13));
 
 		panel.add(btnBrowse);
 		

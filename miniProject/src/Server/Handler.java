@@ -3,32 +3,35 @@ package Server;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import javax.swing.JOptionPane;
+import javax.xml.crypto.Data;
 
 import Database.DBmanager;
+import Domain.menu;
+import View.adminUI;
+
 
 public class Handler extends Thread{
 	Server server;
 	Socket s; 
 	DataInputStream dis;
 	DataOutputStream dos;
+	ObjectOutputStream oos;
 	DBmanager DBmng;
 	
 	String msg; //massage to client
 	String token; //divide token
-	int respon; //DB占쏙옙占� 占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙 占쎈도
+	int respon; 
 	boolean result;
 	
-	
-	
-	Handler(Socket s){ //占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙 Handler占쏙옙占쏙옙 占쌕뤄옙占� 占쏙옙占쏙옙
-		DBmng = new DBmanager(); //DAO + DBmanager占쏙옙占쏙옙
-		this.s = s;//�겢�씪�씠�뼵�듃�쓽 �냼耳�
+	Handler(Socket s){ 
+		DBmng = new DBmanager(); 
+		this.s = s;
 	}
 	
 	@Override
@@ -36,13 +39,14 @@ public class Handler extends Thread{
 		try {
 			dis = new DataInputStream(s.getInputStream());
 			dos = new DataOutputStream(s.getOutputStream());
+			oos = new ObjectOutputStream(s.getOutputStream());
 			
 			String id, password, name, birth, phone, time, seat = null;
 			
 			
 			while(true) {
-				msg = dis.readUTF(); //client媛� 蹂대궦 臾몄옄�뿴�쓣 �넚�떊
-				System.out.println("client:"+msg); //臾몄옄�뿴�쓣 �솗�씤�븯湲� �쐞�븳 �슜�룄
+				msg = dis.readUTF();
+				System.out.println("client:"+msg);
 				
 				StringTokenizer st = new StringTokenizer(msg,"//");
 				
@@ -58,13 +62,9 @@ public class Handler extends Thread{
 					seat = st.nextToken();
 					System.out.println(seat);
 					
-					respon = DBmng.login(id, password); //DBmanager login function �샇異�
-					if(respon == 1) {//�젙蹂닿� �씪移섑븷 寃쎌슦
-						//client濡� response 蹂대궡湲�
+					respon = DBmng.login(id, password);
+					if(respon == 1) {
 						dos.writeUTF(String.valueOf(respon)); 
-						//user媛� �꽑�깮�븳 醫뚯꽍 鍮꾪솢�꽦�솕
-						adminUI.mngbtnMap.get(seat).setEnabled(false);
-						
 					}
 					break;
 					
@@ -95,7 +95,6 @@ public class Handler extends Thread{
 					id = st.nextToken();
 					time = st.nextToken(); 
 					DBmng.exit(id,Integer.parseInt(time));
-					adminUI.mngbtnMap.get(seat).setEnabled(true);
 					s.close();
 					break;
 					
@@ -110,6 +109,9 @@ public class Handler extends Thread{
 					break;
 					
 				case "menu":
+					List<menu> menuList = DBmng.menu();
+					oos.writeObject(menuList);
+					
 					break;
 				}
 			}

@@ -11,7 +11,7 @@ public class DAO {
 	public DAO(){
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/test";
+			String url = "jdbc:mysql://localhost:3306/i4pc";
 				
 			con = DriverManager.getConnection(url,"root","als1tn2!@");
 			System.out.println("[DB]Connected");

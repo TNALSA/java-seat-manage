@@ -1,4 +1,4 @@
-package Client;
+package View;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -17,11 +17,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Client.Client;
+
+
 public class loginUI implements ActionListener {
 
 	JFrame framelogin = new JFrame();
-	JButton registerBtn = new JButton("íšŒì›ê°€ìž…");
-	JButton loginBtn = new JButton("ë¡œê·¸ì¸");
+	JButton registerBtn = new JButton("?šŒ?›ê°??ž…");
+	JButton loginBtn = new JButton("ë¡œê·¸?¸");
 	JTextField userIDField = new JTextField();
 	JPasswordField userPasswordField = new JPasswordField();
 	JLabel userIDLabel = new JLabel("ID: ");
@@ -33,10 +36,10 @@ public class loginUI implements ActionListener {
 	String id, password;
 	String seat;
 	JButton seatBtn;	
-	
 	Client client;
 	
-	private static String[] time = { "1ì‹œê°„", "2ì‹œê°„ 30ë¶„", "4ì‹œê°„", "5ì‹œê°„ 30ë¶„", "6ì‹œê°„" };
+	
+	private static String[] time = { "1?‹œê°?", "2?‹œê°? 30ë¶?", "4?‹œê°?", "5?‹œê°? 30ë¶?", "6?‹œ" };
 	private static String time_pick;
 	private static int time_save;
 
@@ -45,20 +48,12 @@ public class loginUI implements ActionListener {
 		this.seat = seatNum;
 		try {
 			client = new Client();
-			framelogin.setVisible(true);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					
-//					
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
+		framelogin.setVisible(true);
+		
 		userIDLabel.setBounds(100, 100, 75, 25);
 		userPasswordLabel.setBounds(50, 150, 75, 25);
 
@@ -66,7 +61,7 @@ public class loginUI implements ActionListener {
 		messageLabel.setFont(new Font(null, Font.ITALIC, 25));
 
 		loginLabel.setBounds(0, 36, 320, 35);
-		loginLabel.setFont(new Font("KoPubWorldë‹ì›€ì²´ Bold", Font.BOLD, 30));
+		loginLabel.setFont(new Font("KoPubWorldï¿½ë£ï¿½ï¿½ï§£ï¿½ Bold", Font.BOLD, 30));
 		loginLabel.setForeground(Color.DARK_GRAY);
 		loginLabel.setHorizontalAlignment(JLabel.CENTER);
 
@@ -76,17 +71,17 @@ public class loginUI implements ActionListener {
 		userPasswordField.setBackground(Color.WHITE);
 		userPasswordField.setBounds(27, 157, 265, 38);
 
-		loginBtn.setFont(new Font("KoPubWorldë‹ì›€ì²´ Medium", Font.PLAIN, 12));
+		loginBtn.setFont(new Font("KoPubWorldï¿½ë£ï¿½ï¿½ï§£ï¿½ Medium", Font.PLAIN, 12));
 		loginBtn.setBounds(48, 215, 100, 25);
 		loginBtn.addActionListener(this);
 		loginBtn.setFocusable(false);
 
-		registerBtn.setFont(new Font("KoPubWorldë‹ì›€ì²´ Medium", Font.PLAIN, 12));
+		registerBtn.setFont(new Font("KoPubWorldï¿½ë£ï¿½ï¿½ï§£ï¿½ Medium", Font.PLAIN, 12));
 		registerBtn.setBounds(174, 215, 100, 25);
 		registerBtn.addActionListener(this);
 		registerBtn.setFocusable(false);
 
-		// ï¿½ë‹¾ï§ë‚‡ë´½ï¿½ì …ï¿½ì—«
+		// ? ?Žˆ?–®ç­Œë¤¿êµŸéŠ?™?˜™ï¿½ìŸ¿? ?ŽŒë¿?
 		framelogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		framelogin.setBounds(100, 100, 450, 450);
 
@@ -123,30 +118,31 @@ public class loginUI implements ActionListener {
 				client.dos.writeUTF("login//"+id+"//"+password+"//"+seat);
 				String respon =  client.dis.readUTF(); //callback response to server
 				
-				 //login ì„±ê³µ ì‹œ
+				 //login Success
 				if(respon.equals("1")) {
 					client.dos.writeUTF("load//"+id); //load user information
-					String time = client.dis.readUTF(); //userì˜ remainTime ì½ì–´ì˜¤ê¸°
-					JOptionPane.showMessageDialog(null, "ë¡œê·¸ì¸ì„ ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤.");
+					String time = client.dis.readUTF(); //user?˜ remainTime ?½?–´?˜¤ê¸?
+					JOptionPane.showMessageDialog(null, "ë¡œê·¸?¸?„ ?„±ê³µí•˜???Šµ?‹ˆ?‹¤.");
 					framelogin.dispose();
 					
-					seatUI.userbtnMap.get(seat).setEnabled(false); //í•´ë‹¹ ì¢Œì„ ë¹„í™œì„±í™”
+					seatUI.userbtnMap.get(seat).setEnabled(false); //?•´?‹¹ ì¢Œì„ ë¹„í™œ?„±?™”
 				 	if(time.equals("0")) {
-						time_add(); //ì‹œê°„ ì¶”ê°€ í•¨ìˆ˜ í˜¸ì¶œ
+						time_add(); //Add Time
 					}
 					else 
 					{
-						JOptionPane.showMessageDialog(null, "ë‚¨ì€ì‹œê°„: "+TimeTrans(Integer.valueOf(time)));
+						JOptionPane.showMessageDialog(null, "?‚¨???‹œê°?: "+TimeTrans(Integer.valueOf(time)));
+						//Client client = new Client(); //?´?¼?´?–¸?Š¸ ê°ì²´ ?ƒ?„± ?†’ ?†Œì¼? ?—°ê²?
 						userUI uu = new userUI(seat,id,Integer.parseInt(time));
 					}
 				}
-				//ë¹„ë°€ë²ˆí˜¸ ì˜¤ë¥˜
+				
 				if(respon.equals("0")) {
-					JOptionPane.showMessageDialog(null, "ë¹„ë°€ë²ˆí˜¸ê°€ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+					JOptionPane.showMessageDialog(null, "ë¹„ë?ë²ˆí˜¸ê°? ?˜¬ë°”ë¥´ì§? ?•Š?Šµ?‹ˆ?‹¤.");
 				}
-				//íšŒì›ì •ë³´ ë¯¸ì¡´ìž¬ì‹œ
+				//ï¿½ì‰¶ï¿½ìï¿½ì ™è¹‚ï¿½ èª˜ëª„?ˆï¿½?˜±ï¿½ë–†
 				if(respon.equals("2")) {
-					JOptionPane.showMessageDialog(null, "íšŒì›ì •ë³´ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+					JOptionPane.showMessageDialog(null, "?šŒ?›? •ë³´ê? ì¡´ìž¬?•˜ì§? ?•Š?Šµ?‹ˆ?‹¤.");
 				}
 			} catch (IOException e1) {
 				System.out.println("[Client]login Error..");
@@ -161,29 +157,29 @@ public class loginUI implements ActionListener {
 	}
 	
 	public int time_add() throws IOException {
-		time_pick = (String) JOptionPane.showInputDialog(null, "ì‹œê°„ì„ ì„ íƒí•˜ì„¸ìš”", "I4 PC", JOptionPane.WARNING_MESSAGE, null,
-				time, time[0]); //ì‹œê°„ ì„ íƒ dialog
+		time_pick = (String) JOptionPane.showInputDialog(null, "ï¿½ë–†åª›ê¾©?“£ ï¿½ê½‘ï¿½ê¹®ï¿½ë¸¯ï¿½ê½­ï¿½ìŠ‚", "I4 PC", JOptionPane.WARNING_MESSAGE, null,
+				time, time[0]); //?‹œê°„ì„ ?ƒ dialog
 		client.dos.writeUTF("request//"+id+"//"+"//"+seat+"//"+time_pick);
-		// ì‹¤í–‰ ë©”ì„œë“œ í˜¸ì¶œ
+		//?‹¤?–‰ ë©”ì„œ?“œ ?˜¸ì¶?
 		execute();
 		return time_save;
 	}
 	
 	public static void time_save(String time_pick) {
 		switch (time_pick) {
-		case "1ì‹œê°„":
+		case "1?‹œê°?":
 			time_save = 605;
 			break;
-		case "2ì‹œê°„ 30ë¶„":
+		case "2?‹œê°? 30ë¶?":
 			time_save = 9000;
 			break;
-		case "4ì‹œê°„":
+		case "4?‹œê°?":
 			time_save = 14400;
 			break;
-		case "5ì‹œê°„ 30ë¶„":
+		case "5?‹œê°? 30ë¶?":
 			time_save = 19800;
 			break;
-		case "6ì‹œê°„":
+		case "6?‹œê°?":
 			time_save = 21600;
 			break;
 		}
@@ -193,12 +189,13 @@ public class loginUI implements ActionListener {
 	public void execute() {
 		try {
 			String respon = client.dis.readUTF();
-			if(respon.equals("0")){ //0 = ì„œë²„ì—ì„œ ìš”ì²­ì„ ìˆ˜ë½
+			if(respon.equals("0")){ 
 				time_save(time_pick);
+				//Client client = new Client();
 				userUI uu = new userUI(seat, id, time_save);
 			}
-			else { //ì„œë²„ì—ì„œ ìš”ì²­ì„ ê±°ì ˆ
-				JOptionPane.showMessageDialog(null, "ì‹œê°„ ê²°ì œê°€ ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.", "Message",JOptionPane.ERROR_MESSAGE );
+			else { //ï¿½ê½Œè¸°ê¾©ë¿‰ï¿½ê½? ï¿½ìŠ‚ï§£ï¿½ï¿½ì“£ å«„ê³—? …
+				JOptionPane.showMessageDialog(null, "?‹œê°? ê²°ì œê°? ?˜ì§? ?•Š?•˜?Šµ?‹ˆ?‹¤.", "Message",JOptionPane.ERROR_MESSAGE );
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -206,42 +203,42 @@ public class loginUI implements ActionListener {
 	}
 	
 	public static String TimeTrans(int secTime) {
-	      DecimalFormat df = new DecimalFormat("00"); // 00ì¼ 00ì‹œ 00ë¶„ 00ì´ˆ
+	      DecimalFormat df = new DecimalFormat("00"); // 00?¼ 00?‹œ 00ë¶? 00ì´?
 	      StringBuilder sb = new StringBuilder();
 	      
-	      int remain = secTime; // integer ì—ì„œ intí˜• ë½‘ì•„ì˜¤ê¸°
+	      int remain = secTime; //integer?—?„œ int?˜• ë½‘ì•„?˜¤ê¸?
 	      
-	      String day = "ì¼";
-	      String hour = "ì‹œê°„";
-	      String min = "ë¶„";
-	      String sec = "ì´ˆ";
+	      String day = "?¼";
+	      String hour = "?‹œê°?";
+	      String min = "ë¶?";
+	      String sec = "ì´?";
 	      
-//	      // ì¼
-	      int Day = remain / 86400; // 24ì‹œê°„ = 86400ì´ˆ
+
+	      int Day = remain / 86400; //24?‹œê°? = 86400sec
 	      remain = remain % 86400;
 	      if (Day > 0) {
 	         sb.append(df.format(Day));
 	         sb.append(day);
 	      }
 	      
-	      // ì‹œê°„
-	      int Hour = remain / 3600; // 1ì‹œê°„ = 3600ì´ˆ
+	     
+	      int Hour = remain / 3600; //1hour = 3600sec
 	      remain = remain % 3600;
 	      if (Hour > 0) {
 	         sb.append(df.format(Hour));
 	         sb.append(hour);
 	      }
 	      
-	      // ë¶„
-	      int minute = remain / 60; // 1ë¶„ = 60ì´ˆ
+	      // ?ºï¿?
+	      int minute = remain / 60; //1minuate = 60sec
 	      remain = remain % 60;
 	      if (minute > 0) {
 	         sb.append(df.format(minute));
 	         sb.append(min);
 	      }
 	      
-	      // ì´ˆ
-	      int Sec = remain; // 1ì´ˆ = 1ì´ˆ
+	      // ?¥ï¿?
+	      int Sec = remain; // 1sec = 1sec
 	      if (Sec > 0) {
 	         sb.append(df.format(Sec));
 	         sb.append(sec);
