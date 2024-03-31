@@ -112,15 +112,50 @@ public class loginUI implements ActionListener {
 		id = userIDField.getText();
 		password = String.valueOf(userPasswordField.getPassword());
 
+//		if (e.getSource() == loginBtn) { //login btn onClick
+//			try {
+//				client.dos.writeUTF("login//"+id+"//"+password+"//"+seat);
+//				String respon =  client.dis.readUTF(); //callback response to server
+//				if(seat.equals("Admin")) { //Admin Seat Onclick
+//					if(respon.equals("1")) {
+//						JOptionPane.showMessageDialog(null, "관리자 로그인");
+//						framelogin.dispose();
+//						adminUI au = new adminUI();
+//					}
+//				}else {
+//					//login Success
+//					if(respon.equals("1")) {
+//						client.dos.writeUTF("load//"+id); //load user information
+//						String time = client.dis.readUTF(); //user?�� remainTime ?��?��?���?
+//						JOptionPane.showMessageDialog(null, "로그인을 성공하였습니다.");
+//						framelogin.dispose();
+//						
+//						seatUI.userbtnMap.get(seat).setEnabled(false); //?��?�� 좌석 비활?��?��
+//					 	if(time.equals("0")) {
+//							time_add(); //Add Time
+//						}
+//						else 
+//						{
+//							JOptionPane.showMessageDialog(null, "남은 시간: "+TimeTrans(Integer.valueOf(time)));
+//							userUI uu = new userUI(seat,id,Integer.parseInt(time));
+//						}
+//					}
+//				}
+//				if(respon.equals("0")) {
+//					JOptionPane.showMessageDialog(null, "비밀번호가 올바르지 않습니다.");
+//				}
+//				if(respon.equals("2")) {
+//					JOptionPane.showMessageDialog(null, "회원정보가 존재하지 않습니다.");
+//				}
+//			} catch (IOException e1) {
+//				System.out.println("[Client]login Error..");
+//				e1.printStackTrace();
+//			}
+//		}
 		if (e.getSource() == loginBtn) { //login btn onClick
 			try {
 				client.dos.writeUTF("login//"+id+"//"+password+"//"+seat);
 				String respon =  client.dis.readUTF(); //callback response to server
-				if(seat.equals("Admin")) { //Admin Seat Onclick
-					if(respon.equals("1")) {
-						adminUI au = new adminUI();
-					}
-				}else {
 					//login Success
 					if(respon.equals("1")) {
 						client.dos.writeUTF("load//"+id); //load user information
@@ -128,18 +163,17 @@ public class loginUI implements ActionListener {
 						JOptionPane.showMessageDialog(null, "로그인을 성공하였습니다.");
 						framelogin.dispose();
 						
-						seatUI.userbtnMap.get(seat).setEnabled(false); //?��?�� 좌석 비활?��?��
+						seatUI.userbtnMap.get(seat).setEnabled(false); 
 					 	if(time.equals("0")) {
 							time_add(); //Add Time
 						}
 						else 
 						{
-							JOptionPane.showMessageDialog(null, "?��???���?: "+TimeTrans(Integer.valueOf(time)));
-							//Client client = new Client(); //?��?��?��?��?�� 객체 ?��?�� ?�� ?���? ?���?
-							userUI uu = new userUI(seat,id,Integer.parseInt(time));
+							JOptionPane.showMessageDialog(null, "남은 시간: "+TimeTrans(Integer.valueOf(time)));
+							userUI uu = new userUI(seat,id,Integer.parseInt(time),client);
 						}
 					}
-				}
+				
 				if(respon.equals("0")) {
 					JOptionPane.showMessageDialog(null, "비밀번호가 올바르지 않습니다.");
 				}
@@ -194,9 +228,9 @@ public class loginUI implements ActionListener {
 			if(respon.equals("0")){ 
 				time_save(time_pick);
 				//Client client = new Client();
-				userUI uu = new userUI(seat, id, time_save);
+				userUI uu = new userUI(seat, id, time_save, client);
 			}
-			else { //�꽌踰꾩뿉��? �슂泥��쓣 嫄곗?��
+			else {
 				JOptionPane.showMessageDialog(null, "시간 결제가 되지 않았습니다.", "Message",JOptionPane.ERROR_MESSAGE );
 			}
 		} catch (IOException e) {

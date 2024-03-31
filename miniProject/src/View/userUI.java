@@ -48,20 +48,19 @@ public class userUI implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				LocalTime sunnyTime = LocalTime.ofSecondOfDay(time);
-				label.setText("?��???���?:" + sunnyTime);
+				label.setText("남은 시간:" + sunnyTime);
 				time--;
 				
 				if (time == 600) { //time is second
-					JOptionPane.showInternalMessageDialog(null, "?��?��?��간이 10�? ?��?��?��?��?��.");
+					JOptionPane.showInternalMessageDialog(null, "시간이 10분 남았습니다.");
 				}
-				if (time == -1) { //?��?��?��간이 ?��?�� ?��
+				if (time == -1) {
 					timer.stop();
 					try {
 						userMainframe.dispose();
 						seatId = seatUI.userbtnMap.get(seat);
-						seatId.setEnabled(true);
-						client.dos.writeUTF("exit//"+time);
-					} catch (IOException e1) {
+						//seatId.setEnabled(true);
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -70,10 +69,11 @@ public class userUI implements ActionListener {
 		timer.start();
 	}
 
-	public userUI(String seat, String id, int time_save) {
+	public userUI(String seat, String id, int time_save, Client client) {
 		this.seat = seat; //user select seat
 		this.id = id; //user id
 		this.time_save = time_save; //user remain time
+		this.client = client; //userUI에서 클라이언트 소켓을 다루기 위함
 		
 		// Frame
 		userMainframe = new JFrame();
@@ -143,7 +143,7 @@ public class userUI implements ActionListener {
 		Button_order.setBackground(Color.WHITE);
 
 				
-		Button_timeAdd = new JButton("?���? 추�?");
+		Button_timeAdd = new JButton("시간 추가");
 		Button_timeAdd.setFont(new Font("KoPubWorld?��??�? Medium", Font.BOLD, 9));
 		Button_timeAdd.setBounds(204, 140, 84, 23);
 		Button_timeAdd.setFocusable(false);
@@ -182,7 +182,7 @@ public class userUI implements ActionListener {
 	public void actionPerformed(ActionEvent e) { 
 		//주문 버튼
 		if (e.getSource() == Button_food) {
-			menuUI mf = new menuUI();			
+			menuUI mf = new menuUI(client, id);			
 			
 		}
 		//문의 버튼
@@ -191,7 +191,7 @@ public class userUI implements ActionListener {
 		}
 		//종료 버튼
 		if (e.getSource() == Button_end) { 
-			int response = JOptionPane.showConfirmDialog(null,"종료?��?��겠습?���??", "종료", JOptionPane.YES_NO_OPTION,
+			int response = JOptionPane.showConfirmDialog(null,"종료하시겠습니까?", "종료", JOptionPane.YES_NO_OPTION,
 					JOptionPane.INFORMATION_MESSAGE, null);
 			
 			if(response == 0) { //Yes
@@ -206,7 +206,7 @@ public class userUI implements ActionListener {
 			}
 		}
 		/*
-		 //?���? 추�? 버튼
+		 //시간 추가
 		if (e.getSource() == Button_timeAdd) {
 			try {
 				int addTime = Client.timeAdd();

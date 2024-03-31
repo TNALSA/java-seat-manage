@@ -6,7 +6,11 @@ import java.awt.GridLayout;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -24,7 +28,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
+import Client.Client;
 import Database.DBmanager;
 import Domain.menu;
 
@@ -32,25 +38,25 @@ import Domain.menu;
 public class menuUI extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtFieldOrderMessage;
+	//private Client client;
 	static JTable orderTable;
-	static DefaultTableModel model = new DefaultTableModel(new Object[][] {}, //?��?����???���뵠�뇡?���? ?��?��?�� 
+	static DefaultTableModel model = new DefaultTableModel(new Object[][] {}, 
 			new String[] {
-					"?��?�� ?���?", "�?�?", "?��?��"
+					"상품 이름", "가격", "수량"
 				}) ;
 	static int len;
 	static int price;
 	static JLabel totalPrice;
-	List<menu> list;
-	DBmanager dm = new DBmanager();
 	
-	public menuUI() {
-		list = dm.menu(); //?��?��?��베이?��?��?�� ?���? 메뉴 리스?�� 불러?���?
-		menuCom mc = new menuCom(); //menuCom 객체 ?��?��
+	public menuUI(Client client, String id) {
+		DBmanager dm = new DBmanager();
+		List<menu> list = dm.menu(); 
+		menuCom mc = new menuCom(); 
 		
 		setVisible(true);
 		setResizable(false);
 		setBackground(Color.WHITE);
-		setTitle("먹거�? 주문");
+		setTitle("먹거리 주문");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBackground(Color.WHITE);
 		setBounds(100, 100, 893, 672);
@@ -62,7 +68,7 @@ public class menuUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblNewLabel_4 = new JLabel("?��?��?��");
+		JLabel lblNewLabel_4 = new JLabel("인기 메뉴");
 		lblNewLabel_4.setBounds(10, 10, 67, 25);
 		lblNewLabel_4.setForeground(Color.BLACK);
 		lblNewLabel_4.setBackground(Color.WHITE);
@@ -83,7 +89,7 @@ public class menuUI extends JFrame {
 		orderListPane.add(totalPane);
 		totalPane.setLayout(null);
 
-		JLabel totalPriceNotice = new JLabel("�? 금액 :");
+		JLabel totalPriceNotice = new JLabel("총 금액 :");
 		totalPriceNotice.setBounds(30, 7, 60, 26);
 		totalPane.add(totalPriceNotice);
 		totalPriceNotice.setFont(new Font("굴림", Font.PLAIN, 15));
@@ -114,11 +120,11 @@ public class menuUI extends JFrame {
 		len = orderTable.getRowCount();
 		price = 0;
 		for(int i=0; i<len; i++) {
-			price += (int) orderTable.getValueAt(i, 1) *(int) orderTable.getValueAt(i, 2);	//?��?��맒占?���� ?��?��?��?��껓옙 *  ?��?��?��?��?��?��
+			price += (int) orderTable.getValueAt(i, 1) *(int) orderTable.getValueAt(i, 2);	
 		}
 		totalPrice.setText(Integer.toString(price));
 		
-			JButton delBtn = new JButton("?��?��");
+			JButton delBtn = new JButton("삭제");
 			delBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int n = orderTable.getSelectedRow();
@@ -138,11 +144,11 @@ public class menuUI extends JFrame {
 			delBtn.setBounds(102, 254, 70, 26);
 			orderListPane.add(delBtn);
 				
-		//�닔�웾 媛먯?�� 踰꾪?��
 		JButton addBtn = new JButton("+");
 		addBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					
 					int n = orderTable.getSelectedRow();
 					int v = (int) orderTable.getValueAt(n, 2);
 					v++;
@@ -175,7 +181,7 @@ public class menuUI extends JFrame {
 					len = orderTable.getRowCount();
 					price = 0;
 					for(int i=0; i<len; i++) {
-						price += (int) orderTable.getValueAt(i, 1) *(int) orderTable.getValueAt(i, 2);	//?��?��맒占?���� ?��?��?��?��껓옙 *  ?��?��?��?��?��?��
+						price += (int) orderTable.getValueAt(i, 1) *(int) orderTable.getValueAt(i, 2);
 					}
 					totalPrice.setText(Integer.toString(price));
 				} catch(Exception e1) {
@@ -193,9 +199,9 @@ public class menuUI extends JFrame {
 		contentPane.add(orderPay);
 		orderPay.setLayout(null);
 
-		JRadioButton rdbtnCash = new JRadioButton("?���?");
+		JRadioButton rdbtnCash = new JRadioButton("현금");
 		boolean a = false;
-		rdbtnCash.setSelected(a);	//?��?��?��?��?���? ?��?��?�� ?��?���? ?��?��맒占?���?
+		rdbtnCash.setSelected(a);	
 		rdbtnCash.setBackground(Color.WHITE);
 		rdbtnCash.setBounds(5, 14, 50, 20);
 		orderPay.add(rdbtnCash);
@@ -209,12 +215,12 @@ public class menuUI extends JFrame {
 		JComboBox cbBoxCash = new JComboBox();
 		cbBoxCash.setFont(new Font("굴림", Font.PLAIN, 11));
 		cbBoxCash.setBackground(Color.WHITE);
-		cbBoxCash.setModel(new DefaultComboBoxModel(new String[] {"50,000?��", "10,000?��", "5,000?��", "1,000?��", "금액?�� 맞게"}));
+		cbBoxCash.setModel(new DefaultComboBoxModel(new String[] {"50,000원", "10,000원", "5,000원", "1,000원", "금액에 맞게"}));
 		cbBoxCash.setToolTipText("");
 		cbBoxCash.setBounds(56, 13, 73, 21);
 		orderPay.add(cbBoxCash);
 		
-		// 결제 ?��?�� ?��?�� ?�� 중복 ?��?��?�� 불�??��?���?
+		
 		ButtonGroup radioGroup;
 		radioGroup = new ButtonGroup();
 		radioGroup.add(rdbtnCash);
@@ -224,21 +230,40 @@ public class menuUI extends JFrame {
 		txtFieldOrderMessage.setBackground(Color.WHITE);
 		txtFieldOrderMessage.setForeground(Color.LIGHT_GRAY);
 		txtFieldOrderMessage.setFont(new Font("굴림", Font.PLAIN, 11));
-		txtFieldOrderMessage.setText("주문 ?�� ?���??��?�� ?��?��");
+		txtFieldOrderMessage.setText("주문 시 요청사항 입력");
 		txtFieldOrderMessage.setBounds(8, 50, 115, 24);
 		orderPay.add(txtFieldOrderMessage);
 		txtFieldOrderMessage.setColumns(10);
 		
+		/**
+		 * 주문 버튼 클릭 시 DB에 데이터 저장
+		 * 형식: 주문번호//시퀀스//아이디//메뉴번호//결제방식//지불금액//주문일시(default = now())//결제완료(default = false)//결제취소(default = false)
+		 */
 		JButton btnOrder = new JButton("주문");
 		btnOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DefaultTableModel tm = (DefaultTableModel) orderTable.getModel();
+				List<TableModel> orderList = new ArrayList<>();
+				Map<String,Integer> menuMap = new HashMap<>();
 				int len = orderTable.getRowCount();
-				if (len >= 1) { // JTable?�� ?��?�� ?��?��?��?�� ?��?���? + TODO : + 조건문에 ?��?��?��버튼(?��?��/카드) ?��?��?��?�� ?��?��?���??�� 추�?
-					price = 0;
-					tm.setNumRows(0); 
-					totalPrice.setText(Integer.toString(price));
-				} 
+				
+				for(int i = 0; i<len ; i++) {
+					orderList.add((TableModel)orderTable.getValueAt(len, i));
+					
+					
+				}
+				
+				
+				try {
+					
+					
+					
+					
+					if(len > 0) client.dos.writeUTF("order//"+id+"//"); //주문 데이터 어떤 식으로 전송하고 저장할 것인지 결정.
+					else System.out.println("장바구니에 항목이 존재하지 않습니다.");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	
 			}
 		});
 		btnOrder.setBackground(Color.WHITE);
@@ -246,7 +271,9 @@ public class menuUI extends JFrame {
 		btnOrder.setBounds(128, 49, 59, 25);
 		orderPay.add(btnOrder);
 		
-		//메뉴 분류 ?�� ?��?��
+		/**
+		 * 메뉴 탭 관련 (전체보기, 식사류, 라면류, 간식류, 음료류, 토핑류)
+		 */
 	       JTabbedPane Menu = new JTabbedPane(JTabbedPane.TOP);
 	       Menu.setBorder(null); 
 	       Menu.setBackground(Color.WHITE); 
@@ -254,9 +281,8 @@ public class menuUI extends JFrame {
 	       contentPane.add(Menu);
 	        
 	       JScrollPane allScrollPane = new JScrollPane();
-	       Menu.addTab("?���? 보기",allScrollPane); 
+	       Menu.addTab("전체 보기",allScrollPane); 
 	       JPanel all = new JPanel(); 
-	       //?��체보�? ?��?�� ?�� ?��버로 ?���? 메뉴 리스?�� �??��?���?
 	       all.setBackground(Color.WHITE);
 	       allScrollPane.setViewportView(all); 
 	       all.setLayout(new GridLayout(3, 5));
@@ -266,57 +292,57 @@ public class menuUI extends JFrame {
 	       }
 	       
 	       JScrollPane mealScrollPane = new JScrollPane(); 
-	       Menu.addTab("?��?���?",mealScrollPane); 
+	       Menu.addTab("식사류",mealScrollPane); 
 	       JPanel meal = new JPanel(); 
 	       meal.setBackground(Color.WHITE);
 	       mealScrollPane.setViewportView(meal); 
 	       meal.setLayout(new GridLayout(3, 5));
 	       for(int i=0;i<list.size();i++) {
-	       if(list.get(i).getMenuCategory().equals("?��?���?")) { 
+	       if(list.get(i).getMenuCategory().equals("식사류")) { 
 	          meal.add(mc.setMenu(list,i));
 	       } 
 	   }
 	       
 	       JScrollPane rameonScrollPane = new JScrollPane();
-	       Menu.addTab("?��면류",rameonScrollPane); 
+	       Menu.addTab("라면류",rameonScrollPane); 
 	       JPanel rameon = new JPanel();
 	       rameon.setBackground(Color.WHITE); 
 	       rameonScrollPane.setViewportView(rameon);
 	       rameon.setLayout(new GridLayout(3, 5));
 	       for(int i=0;i<list.size();i++) {
-	          if(list.get(i).getMenuCategory().equals("?��면류")) {
+	          if(list.get(i).getMenuCategory().equals("라면류")) {
 		       rameon.add(mc.setMenu(list,i)); 
 		      } 
 	      }
 	       
 	       JScrollPane snackScrollPane = new JScrollPane();
-	       Menu.addTab("간식�?",snackScrollPane); 
+	       Menu.addTab("간식류",snackScrollPane); 
 	       JPanel snack = new JPanel();
 	       snack.setBackground(Color.WHITE); 
 	       snackScrollPane.setViewportView(snack);
 	       snack.setLayout(new GridLayout(3, 5)); 
 	       for(int i=0;i<list.size();i++) {
-		       if(list.get(i).getMenuCategory().equals("간식�?")) {
+		       if(list.get(i).getMenuCategory().equals("간식류")) {
 		    	   snack.add(mc.setMenu(list,i)); 
 		       } 
 	       }
 	       
 	       JScrollPane bevScrollPane = new JScrollPane();
-	       Menu.addTab("?��료류",bevScrollPane); JPanel bev = new JPanel();
+	       Menu.addTab("음료류",bevScrollPane); JPanel bev = new JPanel();
 	       bev.setBackground(Color.WHITE); bevScrollPane.setViewportView(bev);
 	       bev.setLayout(new GridLayout(3, 5)); 
 	       for(int i=0;i<list.size();i++) {
-		       if(list.get(i).getMenuCategory().equals("?��료류")) { 
+		       if(list.get(i).getMenuCategory().equals("음료류")) { 
 		    	   bev.add(mc.setMenu(list,i));
 		       } 
 	       }
 	       
-	       JScrollPane toppingScrollPane = new JScrollPane(); Menu.addTab("?��?���?",
+	       JScrollPane toppingScrollPane = new JScrollPane(); Menu.addTab("토핑류",
 	       toppingScrollPane); JPanel topping = new JPanel();
 	       topping.setBackground(Color.WHITE);
 	       toppingScrollPane.setViewportView(topping); topping.setLayout(new
 	       GridLayout(3, 5)); for(int i=0;i<list.size();i++) {
-		       if(list.get(i).getMenuCategory().equals("?��?���?")) {
+		       if(list.get(i).getMenuCategory().equals("토핑류")) {
 		    	   topping.add(mc.setMenu(list,i)); 
 		       } 
 	       }

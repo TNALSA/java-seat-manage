@@ -47,7 +47,7 @@ public class registerUI implements ActionListener {
 	
 	Client client;
 	
-	boolean check = false; //ì¤‘ë³µ?™•?¸ ?—¬ë¶?
+	boolean check = false; //ì¤‘ë³µ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ï¿½?
 
 	public registerUI(String seat) {
 
@@ -62,8 +62,8 @@ public class registerUI implements ActionListener {
 				}
 			}
 		});
-		// ?šŒ?›ê°??… Text
-		registerLabel = new JLabel("?šŒ?›ê°??…");
+		// ?ï¿½ï¿½?ï¿½ï¿½ï¿½??ï¿½ï¿½ Text
+		registerLabel = new JLabel("?ï¿½ï¿½?ï¿½ï¿½ï¿½??ï¿½ï¿½");
 		registerLabel.setHorizontalAlignment(JLabel.CENTER);
 		registerLabel.setBounds(0, 50, 400, 35);
 		registerLabel.setFont(new Font("KoPubWorldï¿½ë£ï¿½ï¿½ï§£ï¿½ Bold", Font.PLAIN, 25));
@@ -74,35 +74,35 @@ public class registerUI implements ActionListener {
 		IDField.setBounds(90, 100, 220, 35);
 
 		PasswordField = new JTextField();
-		pwHint = new TextHint(PasswordField, "ë¹„ë?ë²ˆí˜¸");
+		pwHint = new TextHint(PasswordField, "ë¹„ï¿½?ë²ˆí˜¸");
 		PasswordField.setBounds(90, 144, 220, 35);
 
 		PWConfirmField = new JTextField();
-		pwcheckHint = new TextHint(PWConfirmField, "ë¹„ë?ë²ˆí˜¸ ?™•?¸");
+		pwcheckHint = new TextHint(PWConfirmField, "ë¹„ï¿½?ë²ˆí˜¸ ?ï¿½ï¿½?ï¿½ï¿½");
 		PWConfirmField.setBounds(90, 193, 220, 35);
 
 		FullNameField = new JTextField();
-		nameHint = new TextHint(FullNameField, "?„±ëª?");
+		nameHint = new TextHint(FullNameField, "?ï¿½ï¿½ï¿½?");
 		FullNameField.setBounds(90, 242, 220, 35);
 
 		phoneField = new JTextField();
-		phoneHint = new TextHint(phoneField, "? „?™”ë²ˆí˜¸");
+		phoneHint = new TextHint(phoneField, "?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸");
 		phoneField.setBounds(90, 291, 220, 35);
 
 
 		dateofbirthField = new JTextField();
-		dateofbirthHint = new TextHint(dateofbirthField, "?ƒ?…„?›”?¼");
+		dateofbirthHint = new TextHint(dateofbirthField, "?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½");
 		dateofbirthField.setBounds(90, 332, 220, 35);
 
 		// Button
-		checkBtn = new JButton("ì¤‘ë³µ?™•?¸");
+		checkBtn = new JButton("ì¤‘ë³µ?ï¿½ï¿½?ï¿½ï¿½");
 		checkBtn.setFont(new Font("KoPubWorldï¿½ë£ï¿½ï¿½ï§£ï¿½ Medium", Font.PLAIN, 9));
 		checkBtn.setBounds(310, 100, 67, 25);
 		checkBtn.addActionListener(this);
 
 
 
-		registerBtn = new JButton("?šŒ?›ê°??…");
+		registerBtn = new JButton("?ï¿½ï¿½?ï¿½ï¿½ï¿½??ï¿½ï¿½");
 		registerBtn.setFont(new Font("KoPubWorldï¿½ë£ï¿½ï¿½ï§£ï¿½ Medium", Font.PLAIN, 9));
 		registerBtn.setBounds(156, 397, 80, 35);
 		registerBtn.addActionListener(this);
@@ -146,48 +146,48 @@ public class registerUI implements ActionListener {
 		phone = phoneField.getText();
 		
 		
-		boolean bool = false; //?…? ¥?‚¬?•­?„ ?‹¤ ?…? ¥?–ˆ?Š”ì§? ?™•?¸?š©
+		boolean bool = false; //?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½
 		
 		if (e.getSource() == registerBtn) {
- //			ë¹„ë?ë²ˆí˜¸ ?™•?¸ 
-			if (!password.equals("ë¹„ë?ë²ˆí˜¸") && !passwordcheck.equals("ë¹„ë?ë²ˆí˜¸ ?™•?¸") && !passwordcheck.equals(password)) {
-				JOptionPane.showMessageDialog(null, "ë¹„ë?ë²ˆí˜¸ê°? ?¼ì¹˜í•˜ì§? ?•Š?Šµ?‹ˆ?‹¤.");
+ //			ë¹„ï¿½?ë²ˆí˜¸ ?ï¿½ï¿½?ï¿½ï¿½ 
+			if (!password.equals("ë¹„ï¿½?ë²ˆí˜¸") && !passwordcheck.equals("ë¹„ï¿½?ë²ˆí˜¸ ?ï¿½ï¿½?ï¿½ï¿½") && !passwordcheck.equals(password)) {
+				JOptionPane.showMessageDialog(null, "ë¹„ï¿½?ë²ˆí˜¸ï¿½? ?ï¿½ï¿½ì¹˜í•˜ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½.");
 				PWConfirmField.setText("");
 				System.out.println("pw");
 				bool = true;
 			}
 
-			// ê³µë°± ?—¬ë¶? ?™•?¸
-			if (id.equals("?•„?´?””")) {
+			// ê³µë°± ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½
+			if (id.equals("?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½")) {
 				IDField.getText();
-				JOptionPane.showMessageDialog(null, "IDë¥? ?…? ¥?•´ì£¼ì„¸?š”.");
+				JOptionPane.showMessageDialog(null, "IDï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ì£¼ì„¸?ï¿½ï¿½.");
 				bool = true;
 
 			}
-			if (password.equals("ë¹„ë?ë²ˆí˜¸")) {
-				JOptionPane.showMessageDialog(null, "ë¹„ë?ë²ˆí˜¸ë¥? ?…? ¥?•´ì£¼ì„¸?š”.");
+			if (password.equals("ë¹„ï¿½?ë²ˆí˜¸")) {
+				JOptionPane.showMessageDialog(null, "ë¹„ï¿½?ë²ˆí˜¸ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ì£¼ì„¸?ï¿½ï¿½.");
 				bool = true;
 
 			}
-			if (passwordcheck.equals("ë¹„ë?ë²ˆí˜¸ ?™•?¸")) {
-				JOptionPane.showMessageDialog(null, "ë¹„ë?ë²ˆí˜¸ ?™•?¸?„ ?…? ¥?•´ì£¼ì„¸?š”");
-				bool = true;
-
-			}
-
-			if (name.equals("?„±ëª?")) {
-				JOptionPane.showMessageDialog(null, "?´ë¦„ì„ ?…? ¥?•´ì£¼ì„¸?š”");
-				bool = true;
-
-			}
-			if (phone.equals("?œ´??? „?™”ë²ˆí˜¸('-'? œ?™¸)")) {
-				JOptionPane.showMessageDialog(null, "ï¿½ìŸ¾ï¿½ì†•è¸°ëŠ?ƒ‡?‘œï¿? ï¿½ì—¯ï¿½ì °ï¿½ë¹äºŒì‡±ê½?ï¿½ìŠ‚!");
+			if (passwordcheck.equals("ë¹„ï¿½?ë²ˆí˜¸ ?ï¿½ï¿½?ï¿½ï¿½")) {
+				JOptionPane.showMessageDialog(null, "ë¹„ï¿½?ë²ˆí˜¸ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ì£¼ì„¸?ï¿½ï¿½");
 				bool = true;
 
 			}
 
-			if (birth.equals("?ƒ?…„?›”?¼(8?ë¦? ?…? ¥)")) {
-				JOptionPane.showMessageDialog(null, "ï¿½ê¹®ï¿½ë?ˆï¿½?¡ï¿½ì”ªï¿½ì“£ ï¿½ì—¯ï¿½ì °ï¿½ë¹äºŒì‡±ê½?ï¿½ìŠ‚!");
+			if (name.equals("?ï¿½ï¿½ï¿½?")) {
+				JOptionPane.showMessageDialog(null, "?ï¿½ï¿½ë¦„ì„ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ì£¼ì„¸?ï¿½ï¿½");
+				bool = true;
+
+			}
+			if (phone.equals("?ï¿½ï¿½???ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸('-'?ï¿½ï¿½?ï¿½ï¿½)")) {
+				JOptionPane.showMessageDialog(null, "ï¿½ìŸ¾ï¿½ì†•è¸°ëŠ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ï¿½ì—¯ï¿½ì °ï¿½ë¹äºŒì‡±ï¿½?ï¿½ìŠ‚!");
+				bool = true;
+
+			}
+
+			if (birth.equals("?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½(8?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½)")) {
+				JOptionPane.showMessageDialog(null, "ï¿½ê¹®ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½ì”ªï¿½ì“£ ï¿½ì—¯ï¿½ì °ï¿½ë¹äºŒì‡±ï¿½?ï¿½ìŠ‚!");
 				bool = true;
 
 			}
@@ -200,7 +200,7 @@ public class registerUI implements ActionListener {
 					
 					boolean rec = Boolean.valueOf(client.dis.readUTF());
 					if (rec) {
-						JOptionPane.showMessageDialog(null, "?šŒ?›ê°??…?„ ?™„ë£Œí•˜???Šµ?‹ˆ?‹¤.");
+						JOptionPane.showMessageDialog(null, "?ï¿½ï¿½?ï¿½ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ë£Œí•˜???ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½.");
 
 						IDField.setText("");
 						PasswordField.setText("");
@@ -227,7 +227,7 @@ public class registerUI implements ActionListener {
 				}
 			}
 			if(check == false) {
-				JOptionPane.showMessageDialog(null, "ì¤‘ë³µ?™•?¸?„ ?•´ì£¼ì„¸?š”");
+				JOptionPane.showMessageDialog(null, "ì¤‘ë³µ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ì£¼ì„¸?ï¿½ï¿½");
 			}
 		}
 		
@@ -236,9 +236,9 @@ public class registerUI implements ActionListener {
 				client.dos.writeUTF("check//"+id);
 				
 				boolean result = Boolean.valueOf(client.dis.readUTF());
-				if(result == true) JOptionPane.showMessageDialog(null, "ì¤‘ë³µ?œ ?•„?´?””ê°? ì¡´ì¬?•©?‹ˆ?‹¤.");	
+				if(result == true) JOptionPane.showMessageDialog(null, "ì¤‘ë³µëœ ì•„ì´ë””ê°€ ì¡´ì¬í•©ë‹ˆë‹¤.");	
 				else {
-				JOptionPane.showMessageDialog(null, "?‚¬?š©ê°??Š¥?•œ ID?…?‹ˆ?‹¤.");
+				JOptionPane.showMessageDialog(null, "?ï¿½ï¿½?ï¿½ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½ ID?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½.");
 				check = true;
 				}
 			} catch (IOException e1) {

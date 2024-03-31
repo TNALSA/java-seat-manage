@@ -21,7 +21,6 @@ public class Handler extends Thread{
 	Socket s; 
 	DataInputStream dis;
 	DataOutputStream dos;
-	ObjectOutputStream oos;
 	DBmanager DBmng;
 	
 	String msg; //massage to client
@@ -39,7 +38,7 @@ public class Handler extends Thread{
 		try {
 			dis = new DataInputStream(s.getInputStream());
 			dos = new DataOutputStream(s.getOutputStream());
-			oos = new ObjectOutputStream(s.getOutputStream());
+			
 			
 			String id, password, name, birth, phone, time, seat = null;
 			
@@ -64,6 +63,7 @@ public class Handler extends Thread{
 					
 					respon = DBmng.login(id, password);
 					if(respon == 1) {
+						System.out.println("1111");
 						dos.writeUTF(String.valueOf(respon)); 
 					}
 					break;
@@ -110,7 +110,6 @@ public class Handler extends Thread{
 					
 				case "menu":
 					List<menu> menuList = DBmng.menu();
-					oos.writeObject(menuList);
 					
 					break;
 				}
