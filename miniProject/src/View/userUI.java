@@ -182,8 +182,13 @@ public class userUI implements ActionListener {
 	public void actionPerformed(ActionEvent e) { 
 		//주문 버튼
 		if (e.getSource() == Button_food) {
-			menuUI mf = new menuUI(client, id);			
-			
+			try {
+				client.dos.writeUTF("menu//");
+				//여기서도 객체로 받아야함
+				menuUI mf = new menuUI(client, id);		
+			}catch(Exception e1) {
+				e1.printStackTrace();
+			}
 		}
 		//문의 버튼
 		if (e.getSource() == Button_order) { 

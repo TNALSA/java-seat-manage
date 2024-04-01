@@ -247,17 +247,13 @@ public class menuUI extends JFrame {
 				int len = orderTable.getRowCount();
 				
 				for(int i = 0; i<len ; i++) {
-					orderList.add((TableModel)orderTable.getValueAt(len, i));
+					orderList.add((TableModel)orderTable.getValueAt(i, i));
 					
 					
 				}
 				
 				
 				try {
-					
-					
-					
-					
 					if(len > 0) client.dos.writeUTF("order//"+id+"//"); //주문 데이터 어떤 식으로 전송하고 저장할 것인지 결정.
 					else System.out.println("장바구니에 항목이 존재하지 않습니다.");
 				} catch (IOException e1) {

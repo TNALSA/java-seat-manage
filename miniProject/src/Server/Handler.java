@@ -68,13 +68,13 @@ public class Handler extends Thread{
 					}
 					break;
 					
-				case "check": //DB�뿉 �쉶�썝�젙蹂닿� 議댁옱�븯�뒗吏� �솗�씤
+				case "check":
 					id = st.nextToken();
 					result = DBmng.check(id);
 					dos.writeUTF(String.valueOf(result));
 					break;
 				
-				case "register": //�쉶�썝媛��엯
+				case "register":
 					id=st.nextToken();
 					password = st.nextToken();
 					name = st.nextToken();
@@ -85,7 +85,7 @@ public class Handler extends Thread{
 					dos.writeUTF(String.valueOf(result));
 					break;
 					
-				case "load": //DB�뿉 client �젙蹂대�� 遺덈윭�샂
+				case "load":
 					id = st.nextToken();
 					int remainTime = DBmng.load(id); //remainTime�� ���옣�릺�뼱�엳�뒗 �떆媛�
 					dos.writeUTF(String.valueOf(remainTime));
@@ -110,7 +110,7 @@ public class Handler extends Thread{
 					
 				case "menu":
 					List<menu> menuList = DBmng.menu();
-					
+					//dos.writeUTF(menuList);
 					break;
 				}
 			}
