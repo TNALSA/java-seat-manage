@@ -3,6 +3,7 @@ package View;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Menu;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -48,9 +49,9 @@ public class menuUI extends JFrame {
 	static int price;
 	static JLabel totalPrice;
 	
-	public menuUI(Client client, String id) {
-		DBmanager dm = new DBmanager();
-		List<menu> list = dm.menu(); 
+	public menuUI(Client client, String id, List<menu> menuList) {
+//		DBmanager dm = new DBmanager();
+//		List<menu> list = dm.menu(); 
 		menuCom mc = new menuCom(); 
 		
 		setVisible(true);
@@ -283,8 +284,8 @@ public class menuUI extends JFrame {
 	       allScrollPane.setViewportView(all); 
 	       all.setLayout(new GridLayout(3, 5));
 	       
-	       for(int i=0;i<list.size();i++) { 
-	          all.add(mc.setMenu(list,i)); 
+	       for(int i=0;i<menuList.size();i++) { 
+	          all.add(mc.setMenu(menuList,i)); 
 	       }
 	       
 	       JScrollPane mealScrollPane = new JScrollPane(); 
@@ -293,9 +294,9 @@ public class menuUI extends JFrame {
 	       meal.setBackground(Color.WHITE);
 	       mealScrollPane.setViewportView(meal); 
 	       meal.setLayout(new GridLayout(3, 5));
-	       for(int i=0;i<list.size();i++) {
-	       if(list.get(i).getMenuCategory().equals("식사류")) { 
-	          meal.add(mc.setMenu(list,i));
+	       for(int i=0;i<menuList.size();i++) {
+	       if(menuList.get(i).getMenuCategory().equals("식사류")) { 
+	          meal.add(mc.setMenu(menuList,i));
 	       } 
 	   }
 	       
@@ -305,9 +306,9 @@ public class menuUI extends JFrame {
 	       rameon.setBackground(Color.WHITE); 
 	       rameonScrollPane.setViewportView(rameon);
 	       rameon.setLayout(new GridLayout(3, 5));
-	       for(int i=0;i<list.size();i++) {
-	          if(list.get(i).getMenuCategory().equals("라면류")) {
-		       rameon.add(mc.setMenu(list,i)); 
+	       for(int i=0;i<menuList.size();i++) {
+	          if(menuList.get(i).getMenuCategory().equals("라면류")) {
+		       rameon.add(mc.setMenu(menuList,i)); 
 		      } 
 	      }
 	       
@@ -317,9 +318,9 @@ public class menuUI extends JFrame {
 	       snack.setBackground(Color.WHITE); 
 	       snackScrollPane.setViewportView(snack);
 	       snack.setLayout(new GridLayout(3, 5)); 
-	       for(int i=0;i<list.size();i++) {
-		       if(list.get(i).getMenuCategory().equals("간식류")) {
-		    	   snack.add(mc.setMenu(list,i)); 
+	       for(int i=0;i<menuList.size();i++) {
+		       if(menuList.get(i).getMenuCategory().equals("간식류")) {
+		    	   snack.add(mc.setMenu(menuList,i)); 
 		       } 
 	       }
 	       
@@ -327,9 +328,9 @@ public class menuUI extends JFrame {
 	       Menu.addTab("음료류",bevScrollPane); JPanel bev = new JPanel();
 	       bev.setBackground(Color.WHITE); bevScrollPane.setViewportView(bev);
 	       bev.setLayout(new GridLayout(3, 5)); 
-	       for(int i=0;i<list.size();i++) {
-		       if(list.get(i).getMenuCategory().equals("음료류")) { 
-		    	   bev.add(mc.setMenu(list,i));
+	       for(int i=0;i<menuList.size();i++) {
+		       if(menuList.get(i).getMenuCategory().equals("음료류")) { 
+		    	   bev.add(mc.setMenu(menuList,i));
 		       } 
 	       }
 	       
@@ -337,9 +338,9 @@ public class menuUI extends JFrame {
 	       toppingScrollPane); JPanel topping = new JPanel();
 	       topping.setBackground(Color.WHITE);
 	       toppingScrollPane.setViewportView(topping); topping.setLayout(new
-	       GridLayout(3, 5)); for(int i=0;i<list.size();i++) {
-		       if(list.get(i).getMenuCategory().equals("토핑류")) {
-		    	   topping.add(mc.setMenu(list,i)); 
+	       GridLayout(3, 5)); for(int i=0;i<menuList.size();i++) {
+		       if(menuList.get(i).getMenuCategory().equals("토핑류")) {
+		    	   topping.add(mc.setMenu(menuList,i)); 
 		       } 
 	       }
 	       

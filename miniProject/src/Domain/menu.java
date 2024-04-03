@@ -1,14 +1,17 @@
 package Domain;
 
+import java.io.Serializable;
 import java.sql.Blob;
 
-public class menu {
+import javax.sql.rowset.serial.SerialBlob;
+
+public class menu implements Serializable{
 	private String menuId;
 	private String menuName;
 	private int menuPrice;
 	private String menuCategory;
 	private boolean menuIsout;
-	private Blob menuImage;
+	private SerialBlob menuImage;
 	
 	public String getMenuId() {
 		return menuId;
@@ -43,8 +46,9 @@ public class menu {
 	public Blob getMenuImage() {
 		return menuImage;
 	}
-	public void setMenuImage(Blob menuImage) {
+	public void setMenuImage(SerialBlob menuImage) {
 		this.menuImage = menuImage;
+		
 	}
 	
 	

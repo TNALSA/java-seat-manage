@@ -2,11 +2,14 @@ package View;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Menu;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,6 +20,7 @@ import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 import Client.Client;
+import Domain.menu;
 
 public class userUI implements ActionListener {
 
@@ -34,6 +38,7 @@ public class userUI implements ActionListener {
 	private static JButton Button_food, Button_order, Button_timeAdd, Button_end;
 	// JLabel
 	private JLabel seat_num, user_id, time_out, time_start;
+	
 	Client client;
 	
 
@@ -183,9 +188,16 @@ public class userUI implements ActionListener {
 		//주문 버튼
 		if (e.getSource() == Button_food) {
 			try {
+				Object menuList;
 				client.dos.writeUTF("menu//");
+				while(true) {
+					menuList = client.ois.readObject();
+					System.out.println(menuList);
+					
+					break;
+				}
 				//여기서도 객체로 받아야함
-				menuUI mf = new menuUI(client, id);		
+				menuUI mf = new menuUI(client, id, (List<menu>) menuList);		
 			}catch(Exception e1) {
 				e1.printStackTrace();
 			}

@@ -1,8 +1,10 @@
 package Server;
 
+import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.List;
@@ -21,6 +23,9 @@ public class Handler extends Thread{
 	Socket s; 
 	DataInputStream dis;
 	DataOutputStream dos;
+	ObjectOutputStream oos;
+	ObjectInputStream ois;
+	
 	DBmanager DBmng;
 	
 	String msg; //massage to client
@@ -38,7 +43,8 @@ public class Handler extends Thread{
 		try {
 			dis = new DataInputStream(s.getInputStream());
 			dos = new DataOutputStream(s.getOutputStream());
-			
+			oos = new ObjectOutputStream(s.getOutputStream());
+			ois = new ObjectInputStream(s.getInputStream());
 			
 			String id, password, name, birth, phone, time, seat = null;
 			
@@ -110,7 +116,7 @@ public class Handler extends Thread{
 					
 				case "menu":
 					List<menu> menuList = DBmng.menu();
-					//dos.writeUTF(menuList);
+					oos.writeObject(menuList);
 					break;
 				}
 			}

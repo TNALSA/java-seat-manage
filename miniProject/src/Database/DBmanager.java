@@ -1,10 +1,12 @@
 package Database;
 
-import java.sql.Blob;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.sql.rowset.serial.SerialBlob;
 
 import Domain.menu;
 
@@ -103,15 +105,18 @@ public class DBmanager extends DAO{
 			pst = con.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			List<menu> menuList = new ArrayList<menu>();
+			javax.sql.rowset.serial.SerialBlob sb;
 			
 			while(rs.next()) {
 				menu md = new menu();
+				sb = new SerialBlob(rs.getBlob("menuImage"));
+				
 				md.setMenuId(rs.getString("menuId"));
 				md.setMenuName(rs.getString("menuName"));
 				md.setMenuPrice(rs.getInt("menuPrice"));
 				md.setMenuCategory(rs.getString("menuCategory"));
 				md.setMenuIsout(rs.getBoolean("menuIsout"));
-				md.setMenuImage(rs.getBlob("menuImage"));
+				md.setMenuImage(sb);
 				
 				menuList.add(md);
 			}
